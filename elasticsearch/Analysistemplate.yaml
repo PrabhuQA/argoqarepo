@@ -13,14 +13,14 @@ spec:
       provider:
         opsmx:
           gateUrl: https://argoqa-helm.isd-dev.opsmx.net/
-          application: logandmetrictest1
+          application: prabhutest1
           user: admin
           lifetimeHours: 04
           threshold:
             pass: 80
             marginal: 60
           services:
-          - logTemplateName: testlogtemp1
+          - logTemplateName: elastictemp1
             logScopeVariables: "kubernetes.pod_name"          
             baselineLogScope: ".*{{args.baseline-hash}}.*"
             canaryLogScope: ".*{{args.canary-hash}}.*"
