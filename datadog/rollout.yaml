@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: rollouts-demo-exp
-          image: docker.io/opsmxdev/issuegen:v3.0.5
+          image: docker.io/opsmxdev/issuegen:v3.0.6
           imagePullPolicy: Always
           ports:
             - containerPort: 8088
@@ -26,9 +26,9 @@ spec:
         - pause: { duration: 45s }
         - experiment:
             analyses:
-              - name : testapp
+              - name : testappp
                 requiredForCompletion: true
-                templateName: testapp
+                templateName: testappp
             templates:
               - name: baseline
                 specRef: stable
@@ -40,7 +40,7 @@ spec:
             analyses:
               - name : testapp
                 requiredForCompletion: true
-                templateName: testapp
+                templateName: datadogmetrictest
             templates:
               - name: baseline
                 specRef: stable
