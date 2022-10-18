@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AnalysisTemplate
 metadata:
-  name: testapp
+  name: testappp
 spec:
   metrics:
-    - name: testapp
+    - name: testappp
       provider:
         opsmx:
           profile: "opsmx-profile"
           gateUrl: https://argoqa-helm.isd-dev.opsmx.net/
           user: admin
-          application: datadog1
+          application: argocd-qa01-datadogtest
           baselineStartTime: "2021-11-03T11:29:46.915Z"
           canaryStartTime: "2021-11-03T11:29:46.915Z"
           lifetimeMinutes: 6
@@ -18,7 +18,7 @@ spec:
             pass: 80
             marginal: 60
           services:
-          - metricTemplateName: datadogcustom
+          - metricTemplateName: datadogmetrictest
             metricScopeVariables: "variable1"
             baselineMetricScope: "service:baseapp"
             canaryMetricScope: "service:canaryapp"
