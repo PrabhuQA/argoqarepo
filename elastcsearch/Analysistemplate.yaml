@@ -18,7 +18,7 @@ spec:
           lifetimeMinutes: 6
           threshold:
             pass: 50
-            marginal: 20
+            marginal: 30
           services:
           - logTemplateName: elastictemp1
             logScopeVariables: "kubernetes.container_name"
