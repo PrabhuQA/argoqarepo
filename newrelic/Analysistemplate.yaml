@@ -8,7 +8,7 @@ spec:
   - provider:
       opsmx:
         canaryStartTime: "2022-09-26T04:17:00.002Z"
-        application: "argoappqatestdestz"
+        application: "argoappqatestftofc"
         profile: "opsmx-profile"
         lifetimeMinutes: 6
         threshold:
