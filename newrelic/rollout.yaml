@@ -1,48 +1,51 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+---
 metadata:
-  name: argotest
+  name: "argotest"
+apiVersion: "argoproj.io/v1alpha1"
+kind: "Rollout"
 spec:
+  template:
+    metadata:
+      labels:
+        app: "argotest"
+    spec:
+      containers:
+      - image: "docker.io/opsmxdev/issuegen:v3.0.9"
+        imagePullPolicy: "Always"
+        name: "rollouts-demo-exp"
+        ports:
+        - containerPort: 8088
   replicas: 1
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: argotest
-  template:
-    metadata:   
-      labels:
-        app: argotest
-    spec:
-      containers:
-        - name: rollouts-demo-exp
-          image: docker.io/opsmxdev/issuegen:v3.0.8
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8088
+      app: "argotest"
   strategy:
     canary:
       steps:
-        - setWeight: 25
-        - pause: { duration: 45s }
-        - experiment:
-            analyses:
-              - name : testapp
-                requiredForCompletion: true
-                templateName: testapp
-            templates:
-              - name: baseline
-                specRef: stable
-              - name: canary
-                specRef: canary
-        - setWeight: 50
-        - pause: { duration: 45s }
-        - experiment:
-            analyses:
-              - name : testapp
-                requiredForCompletion: true
-                templateName: testapp
-            templates:
-              - name: baseline
-                specRef: stable
-              - name: canary
-                specRef: canary
+      - setWeight: 25
+      - pause:
+          duration: "45s"
+      - experiment:
+          analyses:
+          - templateName: "testapp"
+            name: "testapp"
+            requiredForCompletion: true
+          templates:
+          - specRef: "stable"
+            name: "baseline"
+          - specRef: "canary"
+            name: "canary"
+      - setWeight: 50
+      - pause:
+          duration: "45s"
+      - experiment:
+          analyses:
+          - templateName: "testapp"
+            name: "testapp"
+            requiredForCompletion: true
+          templates:
+          - specRef: "stable"
+            name: "baseline"
+          - specRef: "canary"
+            name: "canary"
