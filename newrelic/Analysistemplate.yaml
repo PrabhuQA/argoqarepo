@@ -1,25 +1,25 @@
----
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
 metadata:
-  name: "testapp"
-apiVersion: "argoproj.io/v1alpha1"
-kind: "AnalysisTemplate"
+  name: testapp
 spec:
   metrics:
-  - provider:
-      opsmx:
-        canaryStartTime: "2022-09-26T04:17:00.002Z"
-        application: "argoappqatestzvcst"
-        profile: "opsmx-profile"
-        lifetimeMinutes: 6
-        threshold:
-          pass: 80
-          marginal: 60
-        services:
-        - metricTemplateName: null
-          metricScopeVariables: "app_key,pod_key"
-          canaryMetricScope: "issugen-baseline,76f78f85ff"
-          baselineMetricScope: "issugen-baseline,6944b5c7df"
-        gateUrl: "https://isd-argocd.isd-dev.opsmx.net/gate/"
-        user: "admin"
-        baselineStartTime: "2022-09-26T04:17:00.002Z"
-    name: "testapp"
+    - name: testapp
+      provider:
+        opsmx:
+          profile: "opsmx-profile"
+          gateUrl: https://argoisdfull-uat.ninja-test.opsmx.net/
+          user: admin
+          application: newrelicapp
+          baselineStartTime: "2022-09-26T04:17:00.002Z"
+          canaryStartTime: "2022-09-26T04:17:00.002Z"
+          lifetimeMinutes: 6
+          threshold: 
+            pass: 80
+            marginal: 60
+          services:
+          - metricTemplateName: baseline
+            metricScopeVariables: "app_key,pod_key"
+            baselineMetricScope: "issugen-baseline,6944b5c7df"
+            canaryMetricScope: "issugen-baseline,76f78f85ff"
+
