@@ -40,7 +40,7 @@ spec:
             analyses:
               - name : testapp
                 requiredForCompletion: true
-                templateName: testapp
+                templateName: pntempnewrelic
             templates:
               - name: baseline
                 specRef: stable
